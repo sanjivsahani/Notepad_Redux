@@ -1,0 +1,13 @@
+.data {
+   background: rgb(206, 204, 204);
+}
+.add_data {
+  align-items: center;
+}
+.show_data {
+    margin-top: 3%;
+  width: 100%;
+  height: 340px;
+  overflow: scroll;
+  align-items: center;
+}
