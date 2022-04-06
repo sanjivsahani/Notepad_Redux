@@ -1,5 +1,15 @@
 import './Signup.css'
+import { useNavigate } from 'react-router-dom';
+
 const Signup = () => {
+    let navigate = useNavigate();
+
+    const navigate_login = () => {
+        navigate('/')
+    }
+    const signup_func = () => {
+        navigate('/data/home')
+    }
 
     return (
         <div className='singup d-flex  ' >
@@ -19,8 +29,8 @@ const Signup = () => {
                 <input type="password"  placeholder='Enter your Password'/>
 
                 <div class="d-grid gap-2 my-2">
-                    <button class="btn btn-success btn-sm" type="button">Create a new account</button>
-                    <button class="btn btn-primary btn-sm" type="button">Login</button>
+                    <button class="btn btn-success btn-sm" type="button" onClick={signup_func}>Sign Up now</button>
+                    <button class="btn btn-primary btn-sm" type="button" onClick={navigate_login}> Login page</button>
                 </div>
 
             </div>
