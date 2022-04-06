@@ -2,7 +2,8 @@ import React from 'react'
 import './Data.css'
 
 const ShowData = () => {
-    return (
+    return (<>
+            <h3>Your Notes Here</h3>
         <div className='show_data'>
             <div className="row">
                 <div className="col-sm-6">
@@ -166,7 +167,9 @@ const ShowData = () => {
                  
             </div>
         </div>
+    </>
     )
+        
 }
 
 export default ShowData
