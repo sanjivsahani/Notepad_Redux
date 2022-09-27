@@ -1,16 +1,39 @@
 import './Signup.css'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import axios from "axios"
 
 const Signup = () => {
+    const InitData = {
+        name: "",
+        email: "",
+        password: ""
+    }
+    const [state, setState] = useState(InitData)
+
     let navigate = useNavigate();
 
     const navigate_login = () => {
         navigate('/')
     }
+
+    // function for signup
     const signup_func = () => {
-        navigate('/data/home')
+        // api calling for the Sighup 
+        axios.post("http://localhost:5000/api/auth/singup",state).then((res)=>{
+            let response = res.data
+            // console.log(response.authtoken)
+            if(response.success == true){
+                localStorage.setItem("token",response.authtoken)
+                navigate('/data/home')
+            }
+        })
+        console.log(state)
     }
 
+    const handleChange = (e) => {
+        setState({ ...state, [e.target.name]: e.target.value })
+    }
     return (
         <div className='singup d-flex  ' >
 
@@ -22,11 +45,11 @@ const Signup = () => {
             </div>
 
             <div className="login_info d-grid gap-2  mx-4 ">
-            <input type="text" name=""  placeholder='Enter your Name'/>
-               
-                <input type="email" name=""  placeholder='Enter your Email'/>
-              
-                <input type="password"  placeholder='Enter your Password'/>
+                <input type="text" name="name" placeholder='Enter your Name' onChange={handleChange} />
+
+                <input type="email" name="email" placeholder='Enter your Email' onChange={handleChange} />
+
+                <input type="password" name='password' placeholder='Enter your Password' onChange={handleChange} />
 
                 <div class="d-grid gap-2 my-2">
                     <button class="btn btn-success btn-sm" type="button" onClick={signup_func}>Sign Up now</button>
